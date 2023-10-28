@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../LayOut/MainLayout";
 import Home from "../Pages/Home/Home/Home";
-import BookPage from "../Pages/BookPage/BookPage";
+
+import OrderCard from "../Pages/OrderCard/OrderCard";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/cheakout/:id",
-          element: <BookPage></BookPage>,
+          element: <OrderCard></OrderCard>,
           loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)
         }
       ]
