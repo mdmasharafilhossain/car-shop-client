@@ -42,8 +42,8 @@ const OrderCard = () => {
                 Swal.fire({
                     title: 'Done!',
                     text: 'Order Confirm',
-                    icon: 'error',
-                    confirmButtonText: 'Cool'
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
                   }) 
             }
          })

@@ -5,6 +5,7 @@ const Navbar = () => {
     const navLinks = <>
     <li><Link to="/" className="text-xl font-bold">Home</Link></li>
     <li><Link to="/about" className="text-xl font-bold">About</Link></li>
+    <li><Link to="/login" className="text-xl font-bold">Login</Link></li>
     </>
     return (
         <div>
