@@ -15,7 +15,11 @@ const Navbar = () => {
     <li><Link to="/about" className="text-xl font-bold">About</Link></li>
     {
         user? 
-       <Link> <button onClick={handleLogOut} className="text-xl mt-2 font-bold">Logout</button></Link>
+       <>
+       <li><Link to="/bookings" className="text-xl font-bold">My Bookings</Link></li>
+       <Link><button onClick={handleLogOut} className="text-xl mt-2 font-bold">Logout</button></Link>
+       </>
+
 
         :
         <li><Link to="/login" className="text-xl font-bold">Login</Link></li>
