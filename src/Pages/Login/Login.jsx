@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/login/login.svg'
 
 
@@ -8,6 +8,8 @@ import { Swal, SweetAlert, swal } from 'sweetalert2/dist/sweetalert2.all';
 const Login = () => {
     const {SignIn,user} = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
+    const location = useLocation();
+    console.log(location);
     const handleLogin = e => {
         
         e.preventDefault();
@@ -18,7 +20,10 @@ const Login = () => {
         SignIn(email,password)
         .then(result =>{
           console.log(result.user);
-          alert("successfull")
+          alert("successful");
+
+          
+
         })
         .catch(error =>{
           console.error(error);

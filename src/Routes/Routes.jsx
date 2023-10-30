@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home/Home";
 import OrderCard from "../Pages/OrderCard/OrderCard";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import PrivateRoutes from "../Pages/PrivateRoutes/PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/cheakout/:id",
-          element: <OrderCard></OrderCard>,
+          element: <PrivateRoutes><OrderCard></OrderCard></PrivateRoutes>,
           loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)
         },
         {
