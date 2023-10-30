@@ -1,8 +1,45 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/login/login.svg'
+import { useContext, useState } from 'react';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import { Swal } from 'sweetalert2/dist/sweetalert2.all';
+import { updateProfile } from 'firebase/auth';
 const SignUp = () => {
+    const { createUser,user } = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('');
+    
     const handleSignUp = e =>{
         e.preventDefault();
+        e.preventDefault();
+        console.log(e.currentTarget);
+        const form = new FormData(e.currentTarget);
+        const name = form.get('name')
+        const email = e.target.email.value;
+
+        const password = form.get('password')
+        console.log(name, email, password)
+        setErrorMessage('');
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                const user = result.user;
+                updateProfile(user, {
+                    displayName: name,
+                    
+                });
+
+                Swal.fire({
+                    title: 'Done',
+                    text: 'Register Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
+
+            })
+            .catch(error => {
+                console.error(error);
+                setErrorMessage(error.message)
+            })
     }
     return (
         <div>

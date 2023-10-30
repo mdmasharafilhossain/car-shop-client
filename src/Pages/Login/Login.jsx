@@ -1,8 +1,30 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/login/login.svg'
+
+
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import { useContext, useState } from 'react';
+import { Swal, SweetAlert, swal } from 'sweetalert2/dist/sweetalert2.all';
 const Login = () => {
+    const {SignIn,user} = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('');
     const handleLogin = e => {
+        
         e.preventDefault();
+        console.log(e.currentTarget);
+        const form = new FormData(e.currentTarget);
+        const email = e.target.email.value;
+          const password = form.get('password')
+        SignIn(email,password)
+        .then(result =>{
+          console.log(result.user);
+          alert("successfull")
+        })
+        .catch(error =>{
+          console.error(error);
+          setErrorMessage(error.message)
+  
+        })
     }
     return (
         <div>
@@ -39,11 +61,9 @@ const Login = () => {
                                 </div>
                             </form>
                             <p className='text-xl font-bold mt-7'>New Here? Please <Link to="/signUp" className='text-orange-600'>Sign Up</Link></p>
-                            {/* <button onClick={hadleGoogleLogin} className="btn btn-primary bg-green-700 hover:bg-green-900 text-white">Google Login</button>
-{
-    errorMessage && <p className="text-sm font-bold text-red-700">{errorMessage}</p>
-}
-<p className="text-xl mt-10">New Here?Please <Link to="/register" className="font-bold text-green-600">Register</Link></p> */}
+                            {
+                    errorMessage && <p className="text-sm font-bold text-red-700">{errorMessage}</p>
+                }
                         </div>
                     </div>
 

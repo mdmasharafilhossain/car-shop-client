@@ -1,17 +1,21 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const OrderCard = () => {
     const services = useLoaderData();
     const {_id, title,price,img } = services;
-
+    const{user} = useContext(AuthContext);
+    console.log(user)
     const handleOrder =e=>{
+
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const date = form.date.value;
-         const email = form.email.value;
+         const email = user?.email;
          const amount = form.amount.value;
          const OrderData = {
            CustomerName: name,
