@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/login/login.svg'
 
 
@@ -9,6 +9,7 @@ const Login = () => {
     const {SignIn,user} = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const location = useLocation();
+    const Navigate = useNavigate();
     console.log(location);
     const handleLogin = e => {
         
@@ -22,7 +23,7 @@ const Login = () => {
           console.log(result.user);
           alert("successful");
 
-          
+          Navigate(location?.state ? location?.state : "/")
 
         })
         .catch(error =>{
