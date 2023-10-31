@@ -5,6 +5,7 @@ import logo from '../../assets/images/login/login.svg'
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { useContext, useState } from 'react';
 import { Swal, SweetAlert, swal } from 'sweetalert2/dist/sweetalert2.all';
+import axios from 'axios';
 const Login = () => {
     const {SignIn,user} = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
@@ -20,11 +21,17 @@ const Login = () => {
           const password = form.get('password')
         SignIn(email,password)
         .then(result =>{
-          console.log(result.user);
+            const loggedInUser = result.user;
+          console.log(loggedInUser);
+          const user = {email};
           alert("successful");
 
-          Navigate(location?.state ? location?.state : "/")
-
+        //   Navigate(location?.state ? location?.state : "/")
+        // token 
+        axios.post('http://localhost:5000/jwt',user)
+         .then(res => {
+            console.log(res.data);
+         })
         })
         .catch(error =>{
           console.error(error);

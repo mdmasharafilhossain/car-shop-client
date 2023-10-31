@@ -32,8 +32,8 @@ const BookPage = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Price</th>
-                            
                             <th>Service</th>
+                            
                             <th></th>
                         </tr>
                     </thead>
